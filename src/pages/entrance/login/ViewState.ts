@@ -2,8 +2,8 @@ export abstract class ViewState {
 }
 
 export class Form extends ViewState {
-    email: string | null = null
-    password: string | null = null
+    email: string = ""
+    password: string = ""
 }
 
 export class Error extends ViewState {

@@ -4,25 +4,34 @@ import './App.css';
 import {useLoginPage} from "./hooks/useLoginPage";
 
 export const LoginPage = () => {
-    const {viewState, inputEmail, inputPassword, onChangeEmail, onChangePassword, onSubmit} = useLoginPage()
+    const {
+        viewState,
+        onChangeEmail,
+        onChangePassword,
+        onSubmit,
+        refInputEmail,
+        refInputPassword
+    } = useLoginPage()
 
     return (
         <div className="App">
             <p>E-mail</p>
-            <input ref={inputEmail}
-                   type={"email"}
-                   value={(viewState as Form)?.email ?? undefined}
-                   onChange={onChangeEmail}/>
+            <input
+                ref={refInputEmail}
+                type={"email"}
+                value={(viewState as Form)?.email ?? refInputEmail.current!.value}
+                onChange={onChangeEmail}/>
 
-            {(viewState as Error)?.email && <p>E-mail inválido</p>}
+            {viewState instanceof Error && (viewState as Error).email && <p>E-mail inválido</p>}
 
             <p>Password</p>
-            <input ref={inputPassword}
-                   type={"password"}
-                   value={(viewState as Form)?.email ?? undefined}
-                   onChange={onChangePassword}/>
+            <input
+                ref={refInputPassword}
+                type={"password"}
+                value={(viewState as Form)?.password ??  refInputPassword.current!.value}
+                onChange={onChangePassword}/>
 
-            {(viewState as Error)?.password && <p>Senha inválida</p>}
+            {viewState instanceof Error && (viewState as Error).password && <p>Senha inválida</p>}
 
             <input type={"button"}
                    value={viewState instanceof Loading ? "Carregando" : "Entrar"}

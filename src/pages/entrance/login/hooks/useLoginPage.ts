@@ -1,40 +1,43 @@
-import React, {useState} from "react";
+import {ChangeEvent, useRef, useState} from "react";
 import {Form, Loading, ViewState} from "../ViewState";
 
 export const useLoginPage = () => {
     const [viewState, setViewState] = useState<ViewState>(new Form())
 
-    const inputEmail = React.createRef<HTMLInputElement>();
-    const inputPassword = React.createRef<HTMLInputElement>();
+    const refInputEmail = useRef<HTMLInputElement>(null)
+    const refInputPassword = useRef<HTMLInputElement>(null)
 
-    const onChangeEmail = (e: any) => {
-        if (e.target?.value) {
-            let state = (viewState as Form)
-            state.email = e.target.value
-            setViewState(state)
-        }
+    const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
+        setViewState({
+            ...viewState,
+            email: e.target.value
+        } as Form)
     }
 
-    const onChangePassword = (e: any) => {
-        if (e.target?.value) {
-            let state = (viewState as Form)
-            state.password = e.target.value
-            setViewState(state)
-        }
+    const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
+        setViewState({
+            ...viewState,
+            password: e.target.value
+        } as Form)
     }
 
     const onSubmit = () => {
         setViewState(new Loading())
 
-        console.log(viewState instanceof Loading)
+        setTimeout(() => {
+            setViewState({
+                email: "",
+                password: ""
+            } as Form)
+        }, 5000)
     }
 
     return {
         viewState,
-        inputEmail,
-        inputPassword,
         onChangeEmail,
         onChangePassword,
-        onSubmit
+        onSubmit,
+        refInputEmail,
+        refInputPassword
     }
 }
