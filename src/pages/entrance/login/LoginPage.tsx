@@ -67,7 +67,10 @@ export const LoginPage = () => {
 
                     <hr/>
 
-                    <p className={"sm"}>Ainda não é um mebro? <a href={"#"}>Cadastre-se agora</a></p>
+                    <span className={"d-flex aligns-items-center"}>
+                        Ainda não é um mebro?
+                        <a href={"#"} className={"ms-2"}>Cadastre-se agora</a>
+                    </span>
                 </div>
             </div>
         </div>
