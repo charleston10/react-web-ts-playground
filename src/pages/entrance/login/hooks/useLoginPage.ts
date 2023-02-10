@@ -21,7 +21,7 @@ export const useLoginPage = () => {
         } as Form)
     }
 
-    const onSubmit = () => {
+    const onClickSubmit = () => {
         setViewState(new Loading())
 
         setTimeout(() => {
@@ -32,11 +32,15 @@ export const useLoginPage = () => {
         }, 5000)
     }
 
+    const onClickForgotPassword = () => {
+    }
+
     return {
         viewState,
         onChangeEmail,
         onChangePassword,
-        onSubmit,
+        onClickSubmit,
+        onClickForgotPassword,
         refInputEmail,
         refInputPassword
     }
