@@ -65,11 +65,9 @@ export const LoginPage = () => {
                         </button>
                     </form>
 
-                    <hr className={"mt-4 mb-4"}/>
+                    <hr/>
 
-                    <div className={"row"}>
-                        <p className={"sm"}>Ainda não é um mebro? <a href={"#"}>Cadastre-se agora</a></p>
-                    </div>
+                    <p className={"sm"}>Ainda não é um mebro? <a href={"#"}>Cadastre-se agora</a></p>
                 </div>
             </div>
         </div>
