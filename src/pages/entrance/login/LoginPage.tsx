@@ -16,9 +16,9 @@ export const LoginPage = () => {
     } = useLoginPage()
 
     return (
-        <div className={"container col-3 mt-4 p-4 bg-white rounded-4"}>
-            <div className={"row justify-content-md-center"}>
-                <div className={"row"}>
+        <div className={"container"}>
+            <div className="row justify-content-center">
+                <div className="col-4 bg-white rounded-4 d-flex flex-column p-4 mt-4">
                     <form>
                         <div className={"mb-3"}>
                             <label htmlFor="inputEmail" className="col-sm-2 col-form-label">E-mail</label>
@@ -64,12 +64,12 @@ export const LoginPage = () => {
                             Esqueci minha senha
                         </button>
                     </form>
-                </div>
 
-                <hr className={"mt-4 mb-4 ms-4 me-4"}/>
+                    <hr className={"mt-4 mb-4"}/>
 
-                <div className={"row"}>
-                    <p className={"sm"}>Ainda não é um mebro? <a href={"#"}>Cadastre-se agora</a></p>
+                    <div className={"row"}>
+                        <p className={"sm"}>Ainda não é um mebro? <a href={"#"}>Cadastre-se agora</a></p>
+                    </div>
                 </div>
             </div>
         </div>
