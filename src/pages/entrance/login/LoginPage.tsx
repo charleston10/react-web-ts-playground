@@ -4,6 +4,7 @@ import React from "react";
 import {Error, Form, Loading, Success,} from "./ViewState";
 import {useLoginPage} from "./hooks/useLoginPage";
 import {InputForm} from "../../../components/input";
+import {Button} from "../../../components/button/Button";
 
 export const LoginPage = () => {
     const {
@@ -34,15 +35,15 @@ export const LoginPage = () => {
                                        placeHolder={"Digite seu e-mail"}
                                        onChange={onChangeEmail}
                                        validate={{
-                                       required: {
-                                           value: error.needFillEmail,
-                                           message: "Por favor preencha o e-mail"
-                                       },
-                                       invalid: {
-                                           value: error.invalidEmail,
-                                           message: "E-mail inválido"
-                                       }
-                                   }}/>
+                                           required: {
+                                               value: error.needFillEmail,
+                                               message: "Por favor preencha o e-mail"
+                                           },
+                                           invalid: {
+                                               value: error.invalidEmail,
+                                               message: "E-mail inválido"
+                                           }
+                                       }}/>
 
                             <InputForm innerRef={refInputPassword}
                                        id={"inputPassword"}
@@ -52,11 +53,11 @@ export const LoginPage = () => {
                                        placeHolder={"Digite sua senha"}
                                        onChange={onChangePassword}
                                        validate={{
-                                       required: {
-                                           value: error.needFillPassword,
-                                           message: "Por favor preencha a senha"
-                                       }
-                                   }}/>
+                                           required: {
+                                               value: error.needFillPassword,
+                                               message: "Por favor preencha a senha"
+                                           }
+                                       }}/>
 
 
                             {viewState instanceof Error && (viewState as Error).notAuthorized
@@ -65,25 +66,26 @@ export const LoginPage = () => {
                                 </div>
                             }
 
-                            <button
-                                type="button"
-                                className="btn btn-primary "
+                            <Button
+                                id={"btnEntrar"}
+                                type={"button"}
+                                style={"primary"}
+                                text={"Entrar"}
                                 onClick={onClickSubmit}
-                            >
+                                loading={
+                                    {
+                                        text: "Carregando",
+                                        value: viewState instanceof Loading
+                                    }
+                                }/>
 
-                                {viewState instanceof Loading &&
-                                    <div className="spinner-border spinner-border-sm me-2" role="status"/>}
-                                {viewState instanceof Loading ? "Carregando" : "Entrar"}
-
-                            </button>
-
-                            <button
-                                type="button"
-                                className="btn btn-text ms-2"
+                            <Button
+                                id={"btnEntrar"}
+                                type={"text"}
+                                style={"primary"}
+                                text={"Esqueci minha senha"}
                                 onClick={onClickForgotPassword}
-                            >
-                                Esqueci minha senha
-                            </button>
+                                />
 
                             {viewState instanceof Success
                                 && <div className="alert alert-info mt-4" role="alert">
