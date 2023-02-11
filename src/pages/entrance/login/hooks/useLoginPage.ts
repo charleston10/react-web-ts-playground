@@ -23,9 +23,8 @@ export const useLoginPage = () => {
     }
 
     const onClickSubmit = async () => {
-        if (isValidNeedFill() || hasInvalidField()) {
-            return;
-        }
+        if (isValidNeedFill()) return;
+        if (hasInvalidField()) return;
 
         setViewState(new Loading())
 
