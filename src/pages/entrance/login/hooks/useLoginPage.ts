@@ -59,7 +59,7 @@ export const useLoginPage = () => {
     }
 
     const hasInvalidField = (): boolean => {
-        let emailInvalid = isEmailValid(refInputEmail.current!.value)
+        let emailInvalid = isEmailValid(refInputEmail.current?.value)
 
         if (emailInvalid) {
             let error = new Error()
