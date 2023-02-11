@@ -51,10 +51,10 @@ export const LoginPage = () => {
                             className="btn btn-primary "
                             onClick={onClickSubmit}>
 
+                            {viewState instanceof Loading &&
+                                <div className="spinner-border spinner-border-sm me-2" role="status"/>}
                             {viewState instanceof Loading ? "Carregando" : "Entrar"}
 
-                            {viewState instanceof Loading &&
-                                <div className="spinner-border spinner-border-sm ms-2" role="status"/>}
                         </button>
 
                         <button
