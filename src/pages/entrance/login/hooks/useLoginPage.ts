@@ -33,7 +33,6 @@ export const useLoginPage = () => {
             let profile: Profile = await requestLogin()
             setViewState(new Success(profile))
         } catch (e) {
-            console.error(e)
             setViewState(e as Error)
         }
     }
