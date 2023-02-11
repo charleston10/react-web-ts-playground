@@ -3,6 +3,7 @@ import './Login.scss';
 import React from "react";
 import {Error, Form, Loading, Success,} from "./ViewState";
 import {useLoginPage} from "./hooks/useLoginPage";
+import {InputForm} from "../../../components/input";
 
 export const LoginPage = () => {
     const {
@@ -15,55 +16,48 @@ export const LoginPage = () => {
         refInputPassword
     } = useLoginPage()
 
+    const error = (viewState as Error)
+    const form = (viewState as Form)
+
     return (
         <div className={"container"}>
             <div className="row justify-content-center">
                 <div className="col-4 bg-white rounded-4 d-flex flex-column p-4 mt-4">
                     <form>
-                        <fieldset  disabled={viewState instanceof Loading}>
-                            <div className={"mb-3"}>
-                                <label htmlFor="inputEmail" className="col-sm-2 col-form-label">
-                                    E-mail
-                                </label>
+                        <fieldset disabled={viewState instanceof Loading}>
 
-                                <input
-                                    id={"inputEmail"}
-                                    className="form-control"
-                                    ref={refInputEmail}
-                                    type={"email"}
-                                    value={(viewState as Form)?.email ?? refInputEmail.current!.value}
-                                    onChange={onChangeEmail}
-                                />
+                            <InputForm innerRef={refInputEmail}
+                                       id={"inputEmail"}
+                                       label={"Email"}
+                                       value={form.email ?? refInputEmail.current?.value}
+                                       type={"email"}
+                                       placeHolder={"Digite seu e-mail"}
+                                       onChange={onChangeEmail}
+                                       validate={{
+                                       required: {
+                                           value: error.needFillEmail,
+                                           message: "Por favor preencha o e-mail"
+                                       },
+                                       invalid: {
+                                           value: error.invalidEmail,
+                                           message: "E-mail inválido"
+                                       }
+                                   }}/>
 
-                                {viewState instanceof Error
-                                    && (viewState as Error).invalidEmail
-                                    && <p>E-mail inválido</p>
-                                }
+                            <InputForm innerRef={refInputPassword}
+                                       id={"inputPassword"}
+                                       label={"Senha"}
+                                       value={form.password ?? refInputPassword.current?.value}
+                                       type={"password"}
+                                       placeHolder={"Digite sua senha"}
+                                       onChange={onChangePassword}
+                                       validate={{
+                                       required: {
+                                           value: error.needFillPassword,
+                                           message: "Por favor preencha a senha"
+                                       }
+                                   }}/>
 
-                                {viewState instanceof Error
-                                    && (viewState as Error).needFillEmail
-                                    && <p>Por favor preencha o campo e-mail</p>
-                                }
-                            </div>
-
-                            <div className={"mb-3"}>
-                                <label htmlFor="inputPassword" className="form-label">
-                                    Password
-                                </label>
-
-                                <input
-                                    id={"inputPassword"}
-                                    className="form-control"
-                                    ref={refInputPassword}
-                                    type={"password"}
-                                    value={(viewState as Form)?.password ?? refInputPassword.current!.value}
-                                    onChange={onChangePassword}
-                                />
-
-                                {viewState instanceof Error && (viewState as Error).needFillPassword
-                                    && <p>Por favor preencha o campo senha</p>
-                                }
-                            </div>
 
                             {viewState instanceof Error && (viewState as Error).notAuthorized
                                 && <div className="alert alert-danger" role="alert">
