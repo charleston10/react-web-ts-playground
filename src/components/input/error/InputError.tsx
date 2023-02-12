@@ -8,7 +8,7 @@ export const InputError = (
 ) => {
     if (show) {
         return (
-            <span id={id} ref={innerRef} className={"text-danger"}>
+            <span id={id} ref={innerRef} className={"text-danger animate__animated animate__fadeIn"}>
                 {value}
             </span>
         )

@@ -12,7 +12,7 @@ export const Button = (
             ref={innerRef}
             id={id}
             type={'button'}
-            className={`btn ${classStyle}`}
+            className={`btn ${classStyle} animate__animated animate__fadeIn`}
             onClick={onClick}
         >
             {loading?.value && <div className="spinner-border spinner-border-sm me-2" role="status"/>}
