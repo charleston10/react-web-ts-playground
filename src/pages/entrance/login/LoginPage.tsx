@@ -66,29 +66,31 @@ export const LoginPage = () => {
                                 </div>
                             }
 
-                            <Button
-                                id={"btnEntrar"}
-                                type={"button"}
-                                style={"primary"}
-                                text={"Entrar"}
-                                onClick={onClickSubmit}
-                                loading={
-                                    {
-                                        text: "Carregando",
-                                        value: viewState instanceof Loading
-                                    }
-                                }/>
+                            <div className={"d-flex justify-content-between"}>
+                                <Button
+                                    id={"btnEntrar"}
+                                    type={"button"}
+                                    style={"primary"}
+                                    text={"Entrar"}
+                                    onClick={onClickSubmit}
+                                    loading={
+                                        {
+                                            text: "Carregando",
+                                            value: viewState instanceof Loading
+                                        }
+                                    }/>
 
-                            <Button
-                                id={"btnForgotPassword"}
-                                type={"text"}
-                                style={"primary"}
-                                text={"Esqueci minha senha"}
-                                onClick={onClickForgotPassword}
+                                <Button
+                                    id={"btnForgotPassword"}
+                                    type={"text"}
+                                    style={"primary"}
+                                    text={"Esqueci minha senha"}
+                                    onClick={onClickForgotPassword}
                                 />
+                            </div>
 
                             {viewState instanceof Success
-                                && <div className="alert alert-info mt-4" role="alert">
+                                && <div className="alert alert-info mt-4 animate__animated animate__pulse" role="alert">
                                     {`Seja bem-vindo ${(viewState as Success).profile.name}`}
                                 </div>
                             }
