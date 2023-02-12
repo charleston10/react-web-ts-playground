@@ -1,12 +1,23 @@
 import {ChangeEvent, useRef, useState} from "react";
-import {Form, Loading, Error, ViewState, Success} from "../ViewState";
 import {Profile} from "../../../../model/Profile";
+import {
+    Form,
+    Loading,
+    ViewState,
+    Success,
+    ErrorBuilder
+} from "../view_state";
+import {Error} from "../view_state/ViewState";
 
 export const useLoginPage = () => {
     const [viewState, setViewState] = useState<ViewState>(new Form())
 
     const refInputEmail = useRef<HTMLInputElement>(null)
     const refInputPassword = useRef<HTMLInputElement>(null)
+
+    const hasError = viewState instanceof Error
+    const form = (viewState as Form)
+    const error = (viewState as Error)
 
     const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
         setViewState({
@@ -48,10 +59,12 @@ export const useLoginPage = () => {
         let passwordNeedFill = refInputPassword.current?.value === ""
 
         if (emailNeedFill || passwordNeedFill) {
-            let error = new Error()
-            error.needFillEmail = emailNeedFill
-            error.needFillPassword = passwordNeedFill
-            setViewState(error)
+            setViewState(
+                new ErrorBuilder()
+                    .setNeedFillEmail(emailNeedFill)
+                    .setNeedFillPassword(passwordNeedFill)
+                    .build()
+            )
             return true
         }
 
@@ -62,9 +75,11 @@ export const useLoginPage = () => {
         let emailInvalid = isEmailValid(refInputEmail.current?.value)
 
         if (emailInvalid) {
-            let error = new Error()
-            error.invalidEmail = emailInvalid
-            setViewState(error)
+            setViewState(
+                new ErrorBuilder()
+                    .setInvalidEmail(emailInvalid)
+                    .build()
+            )
             return true
         }
 
@@ -91,6 +106,9 @@ export const useLoginPage = () => {
         onClickSubmit,
         onClickForgotPassword,
         refInputEmail,
-        refInputPassword
+        refInputPassword,
+        hasError,
+        error,
+        form
     }
 }
