@@ -30,13 +30,13 @@ export const InputForm = (
 
             <InputError
                 innerRef={refValiateRequired}
-                id={"errorRequired"}
+                id={`${id}-errorRequired`}
                 value={validate?.required?.message}
                 show={validate?.required?.value ?? false}/>
 
             <InputError
                 innerRef={refValidateInvalid}
-                id={"errorInvalid"}
+                id={`${id}-errorInvalid`}
                 value={validate?.invalid?.message}
                 show={validate?.invalid?.value ?? false}/>
         </div>
