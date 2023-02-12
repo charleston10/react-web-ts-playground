@@ -12,13 +12,6 @@ export const InputForm = (
     const refValidateInvalid = useRef<HTMLElement>(null)
     const hasError = validate?.required?.value || validate?.invalid?.value
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        if (onChange) onChange(e)
-        if (validate?.required?.value) refValiateRequired.current!.innerText = ""
-        if (validate?.invalid?.value) refValidateInvalid.current!.innerText = ""
-        innerRef?.current?.classList?.remove("is-invalid")
-    }
-
     return (
         <div className={"mb-3"}>
             <label htmlFor={id} className="col-sm-2 col-form-label">
@@ -32,7 +25,7 @@ export const InputForm = (
                 value={value}
                 placeHolder={placeHolder}
                 hasError={hasError}
-                onChange={onChangeHandler}
+                onChange={onChange}
             />
 
             <InputError
