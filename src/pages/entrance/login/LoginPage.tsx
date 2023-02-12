@@ -1,7 +1,7 @@
-import './Login.scss';
+import './LoginPage.scss';
 
 import React from "react";
-import {Error, Form, Loading, Success,} from "./ViewState";
+import {Error, Form, Loading, Success,} from "./view_state/ViewState";
 import {useLoginPage} from "./hooks/useLoginPage";
 import {InputForm} from "../../../components/input";
 import {Button} from "../../../components/button/Button";
@@ -14,11 +14,11 @@ export const LoginPage = () => {
         onClickSubmit,
         onClickForgotPassword,
         refInputEmail,
-        refInputPassword
+        refInputPassword,
+        hasError,
+        error,
+        form
     } = useLoginPage()
-
-    const error = (viewState as Error)
-    const form = (viewState as Form)
 
     return (
         <div className={"container"}>
@@ -36,11 +36,11 @@ export const LoginPage = () => {
                                        onChange={onChangeEmail}
                                        validate={{
                                            required: {
-                                               value: error.needFillEmail,
+                                               value: hasError && error.needFillEmail,
                                                message: "Por favor preencha o e-mail"
                                            },
                                            invalid: {
-                                               value: error.invalidEmail,
+                                               value: hasError &&  error.invalidEmail,
                                                message: "E-mail inválido"
                                            }
                                        }}/>
@@ -54,7 +54,7 @@ export const LoginPage = () => {
                                        onChange={onChangePassword}
                                        validate={{
                                            required: {
-                                               value: error.needFillPassword,
+                                               value: hasError && error.needFillPassword,
                                                message: "Por favor preencha a senha"
                                            }
                                        }}/>
@@ -80,7 +80,7 @@ export const LoginPage = () => {
                                 }/>
 
                             <Button
-                                id={"btnEntrar"}
+                                id={"btnForgotPassword"}
                                 type={"text"}
                                 style={"primary"}
                                 text={"Esqueci minha senha"}
