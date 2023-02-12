@@ -1,4 +1,4 @@
-import {Profile} from "../../../../common/model/Profile";
+import {Profile} from "../../../../../common/model/Profile";
 
 export abstract class ViewState {
 }

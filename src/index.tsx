@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import {LoginPage} from "./pages/entrance/login/LoginPage";
+import {LoginPage} from "./presentation/pages/entrance/login/LoginPage";
 
-import './scss/App.scss'
+import './presentation/scss/App.scss'
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
