@@ -1,5 +1,5 @@
 import {ChangeEvent, useRef, useState} from "react";
-import {Profile} from "../../../../model/Profile";
+import {Profile} from "../../../../common/model/Profile";
 import {
     Form,
     Loading,
