@@ -10,7 +10,5 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-    <React.StrictMode>
-        <LoginPage/>
-    </React.StrictMode>
+    <LoginPage/>
 );
